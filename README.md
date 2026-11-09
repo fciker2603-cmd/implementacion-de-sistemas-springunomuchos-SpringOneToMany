@@ -30,16 +30,12 @@ CREATE USER chochos WITH PASSWORD 'chochos';
 CREATE DATABASE chochos OWNER chochos;
 ```
 
-En `demo/src/main/resources/application.properties`, la URL inicial usa
-`localhost`. Al ejecutar Spring Boot dentro del Dev Container, cambia el host
-de la URL a `db`:
-
-```properties
-spring.datasource.url=jdbc:postgresql://db:5432/chochos
-```
-
-Si PostgreSQL está instalado directamente en tu equipo y Spring Boot también se
-ejecuta ahí, conserva `localhost`. Para conectarte desde una herramienta local
+La URL en `demo/src/main/resources/application.properties` usa
+`POSTGRES_HOSTNAME` si está definido y, en caso contrario, `localhost`. El
+Dev Container ya define `POSTGRES_HOSTNAME=db`, por lo que no es necesario
+cambiar la URL para ejecutar Spring Boot dentro de él. Si PostgreSQL está
+instalado directamente en tu equipo y Spring Boot también se ejecuta ahí,
+`localhost` se usa automáticamente. Para conectarte desde una herramienta local
 a PostgreSQL del Dev Container, reenvía el puerto `5432` en
 `.devcontainer/devcontainer.json`.
 
@@ -245,5 +241,4 @@ Rutas adicionales implementadas:
      `Comment`?
 4. Compara tus respuestas con el esquema y el comportamiento observado al probar
    la API. Ajusta el entregable si es necesario.
-
 
